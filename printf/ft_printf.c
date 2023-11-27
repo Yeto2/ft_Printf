@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yessemna <yessemna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 01:33:49 by yessemna          #+#    #+#             */
-/*   Updated: 2023/11/22 17:35:52 by yessemna         ###   ########.fr       */
+/*   Created: 2023/11/24 19:11:31 by yessemna          #+#    #+#             */
+/*   Updated: 2023/11/24 19:11:35 by yessemna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	check_fsp(char format, int *count, va_list	args)
+void	check_fsp(char format, int *count, va_list args)
 {
 	if (format == '%')
 		ft_putchar('%', count);
@@ -47,12 +47,12 @@ int	ft_printf(const char *format, ...)
 	va_start(args, format);
 	while (format[i])
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' && format[i + 1])
 		{
 			i++;
 			check_fsp(format[i], &count, args);
 		}
-		else
+		else if (format[i] != '%')
 			ft_putchar(format[i], &count);
 		i++;
 	}
